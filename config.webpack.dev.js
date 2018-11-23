@@ -31,22 +31,17 @@ module.exports = {
             loader: "style-loader"
           },
           {
-            loader: "css-loader"
+            loader: "css-loader",
+            query: {
+              modules: true,
+              localIdentName: "[name]--[local]"
+            }
           }
         ]
       },
       {
         test: /\.html$/,
         use: [
-          /*          {
-                       loader: "file-loader",
-                      options: {
-                        name: "[name].html"
-                      }
-                    },
-                    {
-                      loader: "extract-loader"
-                    }, */
           {
             loader: "html-loader",
             options:
