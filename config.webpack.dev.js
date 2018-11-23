@@ -36,23 +36,47 @@ module.exports = {
         ]
       },
       {
-        test: /\.html$/,
+        test: /\.sass$/,
         use: [
-          /*          {
-                       loader: "file-loader",
-                      options: {
-                        name: "[name].html"
-                      }
-                    },
-                    {
-                      loader: "extract-loader"
-                    }, */
           {
-            loader: "html-loader",
-            options:
-            {
-              attrs: ["img:src"]
-            }
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
+      },
+      {
+        test: /\.styl$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader"
+          },
+          {
+            loader: "stylus-loader"
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "less-loader"
           }
         ]
       },
@@ -63,6 +87,37 @@ module.exports = {
             loader: "file-loader",
             options: {
               name: "img/[name]-[hash:8].[ext]"
+            }
+          }
+        ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options:
+            {
+              attrs: ["img:src"]
+            }
+          }
+        ]
+      },
+      {
+        test: /\.pug$/,
+        use: [
+          {
+            loader: "pug-loader"
+          }
+        ]
+      },
+      {
+        test: /\.hbs$/,
+        use: [
+          {
+            loader: "handlebars-loader",
+            query: {
+              inlineRequires: "/img/"
             }
           }
         ]
@@ -77,7 +132,8 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/index.hbs",
+      title: "Awesome Title"
     })
   ]
 }
